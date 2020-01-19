@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   php:
-    image: php:7.4-alpine
+    build: .
     working_dir: /app
     volumes:
       - .:/app
@@ -9,9 +9,12 @@ services:
       - 8000:8000
     command: >
       sh -c "
-        if [ ! -f /app/composer ]; then
-          wget -qO- https://getcomposer.org/installer | php -- --install-dir=/app --filename=composer;
-        fi && \
-        ./composer install && \
+        ./composer install &&
+        npm run dev &&
         ./artisan --host=0.0.0.0 serve
       "
+  db:
+    image: postgres:12-alpine
+    environment:
+      POSTGRES_PASSWORD: hardpass
+      POSTGRES_DB: forum
