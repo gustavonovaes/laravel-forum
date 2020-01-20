@@ -9,7 +9,8 @@ services:
       - 8000:8000
     command: >
       sh -c "
-        ./composer install &&
+        composer install &&
+        npm install &&
         npm run dev &&
         ./artisan --host=0.0.0.0 serve
       "
