@@ -22,6 +22,8 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito"
           rel="stylesheet">
 
+    @yield('css')
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}"
           rel="stylesheet">
@@ -125,6 +127,8 @@
         @endauth
 
     </div>
+
+    @yield('js')
 </body>
 
 </html>

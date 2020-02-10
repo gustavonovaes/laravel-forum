@@ -6,7 +6,7 @@
 
     <div class="card-body">
 
-        <form action="{{ route('discussions.store') }}">
+        <form action="{{ route('discussions.store') }}" method="post">
             @csrf
             <div class="form-group">
                 <label for="title">Title</label>
@@ -19,11 +19,10 @@
             <div class="form-group">
                 <label for="content">Content</label>
 
-                <textarea name="content"
-                          id="content"
-                          cols="5"
-                          rows="5"
-                          class="form-control"></textarea>
+                <input id="content"
+                       type="hidden"
+                       name="content">
+                <trix-editor input="content"></trix-editor>
             </div>
 
             <div class="form-group">
@@ -43,4 +42,16 @@
         </form>
     </div>
 </div>
+@endsection
+
+
+@section('css')
+<link async
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.1/trix.css">
+@endsection
+
+@section('js')
+<script defer
+        src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.1/trix.js"></script>
 @endsection
