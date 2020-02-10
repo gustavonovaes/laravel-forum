@@ -25,6 +25,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::share('channels', Channel::all());
+        if (!$this->app->runningInConsole()) {
+            View::share('channels', Channel::all());
+        }
     }
 }
