@@ -13,7 +13,9 @@ class DiscussionsController extends Controller
      */
     public function index()
     {
-        //
+        return view('discussions.index', [
+            'discussions' => Discussion::paginate(5),
+        ]);
     }
 
     /**
