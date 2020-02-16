@@ -26,6 +26,27 @@
     </div>
 </div>
 
+@foreach($replies as $reply)
+<div class="card my-5">
+    <div class="card-header">
+        <div class="d-flex justify-content-between align-content-center">
+            <div>
+                <img style="width: 40px; height: 40px;"
+                     class="rounded-circle"
+                     src="{{ Gravatar::src($reply->owner->email) }}"
+                     alt="" />
+                <strong class="ml-2 text-uppercase">{{ $reply->owner->name }}</strong>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body">
+        {!! $reply->content !!}
+    </div>
+</div>
+@endforeach
+
+{{ $replies->links() }}
 
 @auth
 <div class="card">
@@ -42,8 +63,8 @@
                    id="content">
             <trix-editor input="content"></trix-editor>
 
-        <button type="submit"
-                class="btn btn-success btn-sm my-2">Add Reply</button>
+            <button type="submit"
+                    class="btn btn-success btn-sm my-2">Add Reply</button>
         </form>
     </div>
 </div>
@@ -51,7 +72,6 @@
 <a href="{{ route('login') }}"
    class="btn btn-info">Sign in to add a reply</a>
 @endauth
-
 @endsection
 
 @section('css')

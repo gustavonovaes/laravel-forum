@@ -67,8 +67,11 @@ class DiscussionsController extends Controller
      */
     public function show(Discussion $discussion)
     {
+        $replies = $discussion->replies()->paginate(3);
+
         return view('discussions.show', [
-            'discussion' => $discussion
+            'discussion' => $discussion,
+            'replies' => $replies,
         ]);
     }
 
